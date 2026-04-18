@@ -1,0 +1,11 @@
+apps:
+  carclinic:
+    port: 8080
+environments:
+  dev:
+    base_url: "http://localhost"
+    timeout: 10
+    verify_ssl: true
+    headers:
+      Accept: "application/json"
+      Content-Type: "application/json"
