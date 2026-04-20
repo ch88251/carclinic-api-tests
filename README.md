@@ -1,6 +1,6 @@
-# API Test Automation Framework (Python + pytest)
+# Car Clinic API Test Framework
 
-An API testing framework built with python and pytest.
+An API testing framework built with python and pytest for testing the backend API for the Car Clinic application.
 
 ## Quick start
 
@@ -11,7 +11,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 2. Install dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt .
