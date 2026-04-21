@@ -28,7 +28,9 @@ class ApiClient:
     def post(self, path: str, **kwargs: Any) -> requests.Response:
         url = self._build_url(path)
         logger.info("POST %s", url)
-        response = self.session.post(url, timeout=self.config.timeout, **kwargs)
+        headers = {"Content-Type": "application/json"}
+        headers.update(kwargs.pop("headers", {}) or {})
+        response = self.session.post(url, timeout=self.config.timeout, headers=headers, **kwargs)
         return response
 
     def put(self, path: str, **kwargs: Any) -> requests.Response:

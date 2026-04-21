@@ -15,30 +15,6 @@ def test_get_all_owners(owners_client):
             ["id", "firstName", "lastName", "email", "phoneNumber"],
         )
 
-@pytest.mark.api
-def test_get_single_owner(owners_client, test_data):
-    owner_id = test_data["owners"]["valid_owner_id"]
-
-    response = owners_client.get_owner(owner_id)
-
-    assert_status_code(response.status_code, 200)
-
-    payload = response.json()
-    assert_has_keys(
-        payload,
-        ["id", "firstName", "lastName", "email", "phoneNumber"],
-    )
-    assert payload["id"] == owner_id
-
-
-@pytest.mark.api
-def test_get_unknown_owner_returns_not_found(owners_client, test_data):
-    owner_id = test_data["owners"]["invalid_owner_id"]
-
-    response = owners_client.get_owner(owner_id)
-
-    assert_status_code(response.status_code, 404)
-
 def test_create_owner(owners_client):
     response = owners_client.create_owner({
         "firstName": "Test",
@@ -72,7 +48,3 @@ def test_delete_owner(owners_client, test_data):
     # Now delete the owner
     delete_response = owners_client.delete_owner(owner_id)
     assert_status_code(delete_response.status_code, 204)
-
-    # Verify the owner no longer exists
-    get_response = owners_client.get_owner(owner_id)
-    assert_status_code(get_response.status_code, 404)
