@@ -1,3 +1,6 @@
 owners:
   valid_owner_id: 1
   invalid_owner_id: 999999
+vehicles:
+  valid_vehicle_id: 1
+  invalid_vehicle_id: 999999

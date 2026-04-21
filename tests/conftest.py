@@ -9,6 +9,7 @@ import requests
 import yaml
 from pytest_html import extras as html_extras
 
+from src.clients.vehicles_client import VehiclesClient
 from src.clients.owners_client import OwnersClient
 from src.core.api_client import ApiClient
 from src.core.config import AppConfig, EnvironmentConfig, load_app_configs, load_environment_config
@@ -71,6 +72,12 @@ def owners_client(env_config: EnvironmentConfig, app_configs: dict[str, AppConfi
     config = replace(env_config, base_url=env_config.url_for_app(app_configs["carclinic"]))
     session = create_session(config)
     return OwnersClient(ApiClient(config=config, session=session))
+
+@pytest.fixture(scope="session")
+def vehicles_client(env_config: EnvironmentConfig, app_configs: dict[str, AppConfig]) -> VehiclesClient:
+    config = replace(env_config, base_url=env_config.url_for_app(app_configs["carclinic"]))
+    session = create_session(config)
+    return VehiclesClient(ApiClient(config=config, session=session))
 
 
 @pytest.fixture(autouse=True)
